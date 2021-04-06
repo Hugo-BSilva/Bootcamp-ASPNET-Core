@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+mdXXqo39QT5VMOZA0TYYwJyncQxhkBvKlSbl/YB7KElp+U0kvoaNnxPuNJb5yYuy/a6EZ3UDg8CnY6TQoIKaw==",
+  "dgSpecHash": "YEZYDdGsstcYqJAmek/Cy+zKkaNfyKA+ZRTtpF5C3ty4PPjFadnw00Z72Q/cRc+Zwxp49Pza4DrRfoNokRMovw==",
   "success": true,
-  "projectFilePath": "H:\\Bootcamp-ASPNET\\Bootcamp-ASPNET-Core\\DevCars.API\\DevCars.API\\DevCars.API.csproj",
+  "projectFilePath": "H:\\Bootcamp-ASPNET\\Bootcamp-ASPNET-Core\\DevCars.API\\Bootcamp-ASPNET-Core\\DevCars.API\\DevCars.API\\DevCars.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hugob\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\hugob\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

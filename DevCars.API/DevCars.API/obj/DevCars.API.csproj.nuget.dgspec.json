@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "H:\\Bootcamp-ASPNET\\Bootcamp-ASPNET-Core\\DevCars.API\\DevCars.API\\DevCars.API.csproj": {}
+    "H:\\Bootcamp-ASPNET\\Bootcamp-ASPNET-Core\\DevCars.API\\Bootcamp-ASPNET-Core\\DevCars.API\\DevCars.API\\DevCars.API.csproj": {}
   },
   "projects": {
-    "H:\\Bootcamp-ASPNET\\Bootcamp-ASPNET-Core\\DevCars.API\\DevCars.API\\DevCars.API.csproj": {
+    "H:\\Bootcamp-ASPNET\\Bootcamp-ASPNET-Core\\DevCars.API\\Bootcamp-ASPNET-Core\\DevCars.API\\DevCars.API\\DevCars.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\Bootcamp-ASPNET\\Bootcamp-ASPNET-Core\\DevCars.API\\DevCars.API\\DevCars.API.csproj",
+        "projectUniqueName": "H:\\Bootcamp-ASPNET\\Bootcamp-ASPNET-Core\\DevCars.API\\Bootcamp-ASPNET-Core\\DevCars.API\\DevCars.API\\DevCars.API.csproj",
         "projectName": "DevCars.API",
-        "projectPath": "H:\\Bootcamp-ASPNET\\Bootcamp-ASPNET-Core\\DevCars.API\\DevCars.API\\DevCars.API.csproj",
+        "projectPath": "H:\\Bootcamp-ASPNET\\Bootcamp-ASPNET-Core\\DevCars.API\\Bootcamp-ASPNET-Core\\DevCars.API\\DevCars.API\\DevCars.API.csproj",
         "packagesPath": "C:\\Users\\hugob\\.nuget\\packages\\",
-        "outputPath": "H:\\Bootcamp-ASPNET\\Bootcamp-ASPNET-Core\\DevCars.API\\DevCars.API\\obj\\",
+        "outputPath": "H:\\Bootcamp-ASPNET\\Bootcamp-ASPNET-Core\\DevCars.API\\Bootcamp-ASPNET-Core\\DevCars.API\\DevCars.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
