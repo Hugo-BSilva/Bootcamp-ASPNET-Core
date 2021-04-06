@@ -74,9 +74,10 @@ namespace DevCars.API.Controllers
             {
                 return BadRequest("Modelo não pode ter mais de 50 caracteres.");
             }
-            var car = new Car(4, model.VinCode, model.Brand, model.Model, model.Year, model.Price, model.Color, model.ProductionDate);
+            var car = new Car(model.VinCode, model.Brand, model.Model, model.Year, model.Price, model.Color, model.ProductionDate);
 
             _dbContext.Cars.Add(car);
+            _dbContext.SaveChanges();
 
             return CreatedAtAction(
                 nameof(GetById),
@@ -101,6 +102,8 @@ namespace DevCars.API.Controllers
             }
 
             car.Update(model.Color, model.Price);
+
+            _dbContext.SaveChanges();
 
             return NoContent();
         }

@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace DevCars.API
 {
@@ -27,7 +28,14 @@ namespace DevCars.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton < DevCarsDbContext>();
+            //services.AddSingleton < DevCarsDbContext>();
+
+            //Conecta ao banco que configuramos no arquivo appsettings.json
+            var connectionString = Configuration.GetSection("DevCars").Value;
+
+            services.AddDbContext<DevCarsDbContext>(options => options.UseSqlServer(connectionString));
+
+            services.AddDbContext<DevCarsDbContext>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

@@ -1,30 +1,36 @@
 ﻿using DevCars.API.Entities;
-using System;
+using DevCars.API.Persistence.Configurations;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Reflection;
 
 namespace DevCars.API.Persistence
 {
-    public class DevCarsDbContext
+    public class DevCarsDbContext : DbContext
     {
-        public DevCarsDbContext()
-        {
-            Cars = new List<Car>
-            {
-                new Car(1, "123ABC", "HONDA", "CIVIC", 2021,100000,"CINZA", new DateTime(2021,1,1)),
-                new Car(2, "321BAC", "TOYOTA", "COROLA", 2020,50000,"AZUL", new DateTime(2021,1,1)),
-                new Car(3, "789HGW", "CHEVROLET", "ONIX", 2021,120000,"PRETO", new DateTime(2021,1,1))
-            };
+        public DevCarsDbContext(DbContextOptions<DevCarsDbContext> options) : base (options) { }
+        public DbSet<Car> Cars{ get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<ExtraOrderItem> ExtraOrderItems { get; set; }
 
-            Customers = new List<Customer>
-            {
-                 new Customer(1, "HUGO", "1234567", new DateTime(1999, 1,1)),
-                 new Customer(2, "JÚLIO", "123498", new DateTime(1990, 1,4)),
-                 new Customer(3, "JOÃO", "1234560", new DateTime(1993, 2,1))
-            };
+        //Configurando o Banco de dados com EF Core
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //TABLE CAR
+            //modelBuilder.ApplyConfiguration(new CarDbConfiguration());
+
+            ////TABLE CUSTOMER
+            //modelBuilder.ApplyConfiguration(new CustomerDbConfiguration());
+
+            ////TABLE ORDER
+            //modelBuilder.ApplyConfiguration(new OrderDbConfiguration());
+
+            ////TABLE EXTRAORDERITEM
+            //modelBuilder.ApplyConfiguration(new ExtraOrderDbConfiguration());
+
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
         }
-        public List<Car> Cars{ get; set; }
-        public List<Customer> Customers { get; set; }
     }
 }

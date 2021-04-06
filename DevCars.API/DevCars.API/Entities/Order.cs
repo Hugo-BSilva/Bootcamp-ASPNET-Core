@@ -7,9 +7,9 @@ namespace DevCars.API.Entities
 {
     public class Order
     {
-        public Order(int id, int idCar, int idCustomer, decimal price, List<ExtraOrderItem> items)
+        protected Order(){ }
+        public Order( int idCar, int idCustomer, decimal price, List<ExtraOrderItem> items)
         {
-            Id = id;
             IdCar = idCar;
             IdCustomer = idCustomer;
             //pra cada soma, vou pegar o preço do item + preço do carro
@@ -20,13 +20,16 @@ namespace DevCars.API.Entities
 
         public int Id { get; private set; }
         public int IdCar { get; private set; }
+        public Car Car { get; set; } //Propriedade de Navegação 
         public int IdCustomer { get; private set; }
+        public Customer Customer { get; set; } //Propriedade de Navegação 
         public decimal TotalCost { get; private set; }
         public List<ExtraOrderItem> ExtraItems { get; private set; }
     }
 
     public class ExtraOrderItem
     {
+        protected ExtraOrderItem() { } //Construtor para o Entity 
         public ExtraOrderItem(string description, decimal price)
         {
             Description = description;
