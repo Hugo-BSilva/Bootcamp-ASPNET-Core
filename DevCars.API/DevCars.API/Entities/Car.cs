@@ -32,5 +32,17 @@ namespace DevCars.API.Entities
         public DateTime ProductionDate { get; private set; }
         public CarStatusEnum Status { get; private set; }
         public DateTime RegisteredAt { get; private set; }
+
+        
+        public void Update(string color, decimal price)
+        {
+            Color = color;
+            Price = price;
+        }
+
+        public void SetAsSuspended()
+        {
+            Status = CarStatusEnum.Supended;
+        }
     }
 }

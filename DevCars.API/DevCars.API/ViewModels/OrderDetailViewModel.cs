@@ -7,6 +7,14 @@ namespace DevCars.API.ViewModels
 {
     public class OrderDetailViewModel
     {
+        public OrderDetailViewModel(int idCar, int idCustomer, decimal totalCost, List<string> extraItems)
+        {
+            IdCar = idCar;
+            IdCustomer = idCustomer;
+            TotalCost = totalCost;
+            ExtraItems = extraItems;
+        }
+
         public int IdCar { get; set; }
         public int IdCustomer { get; set; }
         public decimal TotalCost { get; set; }

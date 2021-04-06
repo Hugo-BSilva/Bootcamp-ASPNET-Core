@@ -7,6 +7,18 @@ namespace DevCars.API.ViewModels
 {
     public class CarDetailViewModel
     {
+        public CarDetailViewModel(int id, string brand, string model, string vinCode, int year, decimal price, string color, DateTime productionDate)
+        {
+            Id = id;
+            Brand = brand;
+            Model = model;
+            VinCode = vinCode;
+            Year = year;
+            Price = price;
+            Color = color;
+            ProductionDate = productionDate;
+        }
+
         public int Id { get; set; }
         public string Brand { get; set; }
         public string Model { get; set; }
