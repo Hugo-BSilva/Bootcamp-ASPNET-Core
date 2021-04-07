@@ -60,3 +60,6 @@ H:\Bootcamp-ASPNET\Bootcamp-ASPNET-Core\DevCars.API\Bootcamp-ASPNET-Core\DevCars
 H:\Bootcamp-ASPNET\Bootcamp-ASPNET-Core\DevCars.API\Bootcamp-ASPNET-Core\DevCars.API\DevCars.API\obj\Debug\net5.0\ref\DevCars.API.dll
 H:\Bootcamp-ASPNET\Bootcamp-ASPNET-Core\DevCars.API\Bootcamp-ASPNET-Core\DevCars.API\DevCars.API\obj\Debug\net5.0\DevCars.API.pdb
 H:\Bootcamp-ASPNET\Bootcamp-ASPNET-Core\DevCars.API\Bootcamp-ASPNET-Core\DevCars.API\DevCars.API\obj\Debug\net5.0\DevCars.API.genruntimeconfig.cache
+H:\Bootcamp-ASPNET\Bootcamp-ASPNET-Core\DevCars.API\Bootcamp-ASPNET-Core\DevCars.API\DevCars.API\bin\Debug\net5.0\Dapper.dll
+H:\Bootcamp-ASPNET\Bootcamp-ASPNET-Core\DevCars.API\Bootcamp-ASPNET-Core\DevCars.API\DevCars.API\bin\Debug\net5.0\DevCars.API.xml
+H:\Bootcamp-ASPNET\Bootcamp-ASPNET-Core\DevCars.API\Bootcamp-ASPNET-Core\DevCars.API\DevCars.API\obj\Debug\net5.0\DevCars.API.xml

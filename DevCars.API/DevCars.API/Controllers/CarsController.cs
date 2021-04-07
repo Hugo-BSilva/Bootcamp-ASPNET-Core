@@ -1,8 +1,13 @@
-﻿using DevCars.API.Entities;
+﻿using Dapper;
+using DevCars.API.Entities;
 using DevCars.API.InputModels;
 using DevCars.API.Persistence;
 using DevCars.API.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +21,14 @@ namespace DevCars.API.Controllers
     {
         //Injeção de Dependência, dessa forma o dbContext pode ser acessado por todas as APIs
         private readonly DevCarsDbContext _dbContext;
-        public CarsController(DevCarsDbContext dbContext)
+        private readonly string _connectionString; //string conexão com Dapper
+        public CarsController(DevCarsDbContext dbContext, IConfiguration configuration)
         {
             _dbContext = dbContext;
+
+            //SE EU UTILIZAR O DBCONTEXT, E UTILIZAR O INMEMORY VAI DAR ERRO
+            //_connectionString = _dbContext.Database.GetDbConnection().ConnectionString;
+            _connectionString = configuration.GetConnectionString("DevCarsCs");
         }
 
 
@@ -27,13 +37,21 @@ namespace DevCars.API.Controllers
         public IActionResult Get()
         {
             //Retorna lista de CarItemViewModel
-            var cars = _dbContext.Cars;
-            //Projeção de dados. Pra cada obj do tipo carro, crie um novo carItemViewModel
-            var carsViewModel = cars
-                .Select(c => new CarItemViewModel(c.Id, c.Brand, c.Model, c.Price))
-                .ToList();
+            //var cars = _dbContext.Cars;
+            ////Projeção de dados. Pra cada obj do tipo carro, crie um novo carItemViewModel
+            //var carsViewModel = cars
+            //    .Select(c => new CarItemViewModel(c.Id, c.Brand, c.Model, c.Price))
+            //    .ToList();
 
-            return Ok(carsViewModel);
+            //QUANDO POSTAR O PROJETO, É IMPORTANTE COMENTAR ESSA PARTE, E DESCOMENTAR A DE CIMA 
+            using(var sqlConnection = new SqlConnection(_connectionString))
+            {
+                var query = "SELECT Id, Brand, Model, Price, Price FROM Cars WHERE Status = 0";
+
+                var carsViewModel = sqlConnection.Query<CarItemViewModel>(query);
+
+                return Ok(carsViewModel);
+            }
         }
 
         /* GET api/cars/1 - O número um representa o identificador do carro, sendo assim,
@@ -62,8 +80,28 @@ namespace DevCars.API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Cadastrar um carro
+        /// </summary>
+        /// <remarks>
+        /// Requisição de exemplo:
+        /// {
+        ///     "brand": "Honda",
+        ///     "model": "Civic",
+        ///     "VinCode": "abc123",
+        ///     "year": 2021,
+        ///     "color": "Cinza",
+        ///     "productionDate": "2021-04-05"
+        /// }
+        /// </remarks>       
+        /// <param name="model"> Dados de um novo Carro</param>
+        /// <returns>Objeto recém criado !</returns>
+        /// <response code="201">Objeto Criado com Sucesso</response>
+        /// <response code="400">Dados invalidos</response>
         //POST api/cars/1 - Cadastra um novo veículo com o corpo do AddCarInputModel
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult Post([FromBody] AddCarInputModel model)
         {
             // SE O CADASTRO FUNCIONAR, RETORNA CREATED (201)
@@ -86,8 +124,26 @@ namespace DevCars.API.Controllers
                 );
         }
 
+        /// <summary>
+        /// Atualizar dados de um Carro
+        /// </summary>
+        /// <remarks>
+        /// Requisição de Exemplo: 
+        /// {
+        ///     "color": "Vermelho",
+        ///     "price" : 100000
+        /// }
+        /// </remarks>
+        /// <param name="id">Identificador de um Carro</param>
+        /// <param name="model">Dados de Alteração</param>
+        /// <returns>Não tem retorno. </returns>
+        /// <response code="204">Atualização Bem-Sucedida</response>
+        /// <response code="404">Carro não encontrado</response>
         //PUT api/cars/1 - Essa API atualiza um recurso
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Put(int id, [FromBody] UpdateCarInputModel model)
         {
             //SE A ATUALIZAÇÃO FUNCIONAR, RETORNA 204 NO CONTENT
@@ -103,7 +159,14 @@ namespace DevCars.API.Controllers
 
             car.Update(model.Color, model.Price);
 
-            _dbContext.SaveChanges();
+            //_dbContext.SaveChanges();
+            //QUANDO POSTAR O PROJETO COMENTAR ESSA PARTE DE BAIXO
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                var query = "UPDATE Cars SET Color = @color, Price = @price WHERE Id = @id";
+
+                sqlConnection.Execute(query, new { color = car.Color, price = car.Price, car.Id });
+            }
 
             return NoContent();
         }
