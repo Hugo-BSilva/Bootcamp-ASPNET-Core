@@ -18,7 +18,6 @@ namespace DevCars.API.Persistence.Configurations
 
 
             builder
-                .ToTable("tb_Car") //Nome da tabela
                 .Property(c => c.Brand)
                 .HasColumnName("Marca")
                 .HasColumnType("VARCHAR(100)")

@@ -8,7 +8,7 @@ namespace DevCars.API.Entities
     public class Order
     {
         protected Order(){ }
-        public Order( int idCar, int idCustomer, decimal price, List<ExtraOrderItem> items)
+        public Order(int idCar, int idCustomer, decimal price, List<ExtraOrderItem> items)
         {
             IdCar = idCar;
             IdCustomer = idCustomer;

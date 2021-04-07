@@ -30,6 +30,7 @@ namespace DevCars.API.Controllers
             var cars = _dbContext.Cars;
             //Projeção de dados. Pra cada obj do tipo carro, crie um novo carItemViewModel
             var carsViewModel = cars
+                .Where(c => c.Status == CarStatusEnum.Availabel)
                 .Select(c => new CarItemViewModel(c.Id, c.Brand, c.Model, c.Price))
                 .ToList();
 

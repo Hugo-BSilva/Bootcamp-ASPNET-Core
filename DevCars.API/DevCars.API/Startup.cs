@@ -31,8 +31,9 @@ namespace DevCars.API
             //services.AddSingleton < DevCarsDbContext>();
 
             //Conecta ao banco que configuramos no arquivo appsettings.json
-            var connectionString = Configuration.GetSection("DevCars").Value;
+            var connectionString = Configuration.GetConnectionString("DevCarsCs");
 
+            //services.AddDbContext<DevCarsDbContext>(options => options.UseInMemoryDatabase("DevCarsCs"));
             services.AddDbContext<DevCarsDbContext>(options => options.UseSqlServer(connectionString));
 
             services.AddDbContext<DevCarsDbContext>();

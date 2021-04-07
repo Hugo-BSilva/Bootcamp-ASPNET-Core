@@ -14,8 +14,6 @@ namespace DevCars.API.Persistence.Configurations
         {
             builder
                 .HasKey(eo => eo.Id);
-            builder
-                .ToTable("tb_ExtraOrderItem");
         }
     }
 }

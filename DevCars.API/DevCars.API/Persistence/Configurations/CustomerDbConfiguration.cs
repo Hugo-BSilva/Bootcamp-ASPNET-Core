@@ -16,7 +16,6 @@ namespace DevCars.API.Persistence.Configurations
                 .HasKey(c => c.Id);
 
             builder
-                .ToTable("tb_Customer")
                 .HasMany(c => c.Orders)
                 .WithOne(o => o.Customer)
                 .HasForeignKey(o => o.IdCustomer)
